@@ -1,0 +1,16 @@
+zuul:
+  routes:
+    flight-service:
+      path: /flight-service/**
+    user-service:
+      path: /user-service/**
+  prefix: /fms
+
+
+spring:
+  application:
+    name: api-gateway
+
+eureka:
+  client:
+    fetch-registry: true
