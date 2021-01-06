@@ -1,0 +1,13 @@
+
+a	java:S112Œ"FDefine and throw a dedicated exception instead of using a generic one.(íû™¿ÿÿÿÿÿ
+`	java:S112o"FDefine and throw a dedicated exception instead of using a generic one.(¹©‚úÿÿÿÿ
+C
+java:S16595"(Declare "flight2DTO" on a separate line.(ÃÈœìùÿÿÿÿ
+_
+java:S1192a"IDefine a constant instead of duplicating this literal "/flight/" 5 times.(ÿã°Œ
+@
+java:S16594"%Declare "flight2" on a separate line.(Å×äÜıÿÿÿÿ
+`	java:S112I"FDefine and throw a dedicated exception instead of using a generic one.(ÒÊÖìşÿÿÿÿ
+\	java:S112°"FDefine and throw a dedicated exception instead of using a generic one.(úÖ—•
+`	java:S112]"FDefine and throw a dedicated exception instead of using a generic one.(´ÃœÚÿÿÿÿÿ
+a	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ˆº»Êıÿÿÿÿ
