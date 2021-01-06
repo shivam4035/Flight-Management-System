@@ -26,7 +26,7 @@ Spring boot learning project for searching and booking flights.
 
 
 # For running
- * Clone the whole project.
+ * Clone the whole project from the master branch.
  * Up the Eureka Service, followed by Spring Cloud Config Server.
  * Next Up the Flight Service -> User Service -> Api Gateway
  * Explore the endpoints on postman.
