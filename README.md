@@ -25,8 +25,13 @@ Spring boot learning project for searching and booking flights.
 * Test Suites - Unit, Slice and Component Tests are included.
 
 
-# For running
- * Clone the whole project.
+# For running backend
+ * Clone the whole project from the master branch.
  * Up the Eureka Discovery Service, followed by Spring Cloud Config Server.
  * Next Up the Flight Service -> User Service -> Api Gateway
- * Explore the endpoints on postman.
+ * Explore the endpoints on postman (important to observe api-gateway carefully for zuul-prefix and port).
+ 
+# For running frontend
+ * Clone the whole project from the front-end branch.
+ * Install npm and nodeJs to run.
+ * Use ng serve command at the folder for starting Angular server at port 4200.
