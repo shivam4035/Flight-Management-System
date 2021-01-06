@@ -1,0 +1,164 @@
+
+<app-admin></app-admin>
+ <mat-card style="width: 1300px; margin-left: 50px;">
+  <mat-card-title>Available Flight</mat-card-title>
+<form [formGroup]="ownerForm" autocomplete="off" (ngSubmit)="updateFlight()" novalidate fxLayout="column wrap"
+fxLayoutAlign="center center" fxLayoutGap="10px" class="form">
+<mat-card-content>
+    
+<mat-form-field appearance="outline">
+    <mat-label>Flight Id</mat-label>
+    <input matInput placeholder="FlightId" name="flightId" value={{field.id}} readonly
+    [(ngModel)]="field.id">
+</mat-form-field>
+
+<div>
+    
+    <mat-form-field appearance="outline">
+        <mat-label>Vendor</mat-label>
+        <input type="text" matInput placeholder="vendor" name="vendor" value={{field.flightId.vendor}}
+        [(ngModel)]=field.flightId.vendor formControlName="vendor" autocomplete="off" />
+        <mat-hint align="end">Not more than 20 characters long.</mat-hint>
+        <mat-error *ngIf="hasError('vendor', 'required')">Vendor is required</mat-error>
+        <mat-error *ngIf="hasError('vendor', 'maxlength')">You have more than 20 characters</mat-error>
+    </mat-form-field> 
+
+    <mat-form-field appearance="outline" class="source">
+        <mat-label>Source</mat-label> 
+        <input matInput type="text"  list="source"  id="inputSource" placeholder="Select City" autocomplete="off"
+        name="source"  value={{selectedSource}} formControlName="src" [(ngModel)]=selectedSource/>
+              <datalist id="source">
+                <option *ngFor = "let cityCode of cityCodeList" 
+                [value]="cityCode.cityName">
+                    {{cityCode.cityName}} {{cityCode.cityCode}}
+              </option>
+              </datalist>
+        <mat-hint align="end">Not more than 30 characters long.</mat-hint>
+        <mat-error *ngIf="hasError('dest', 'pattern')">Only text allowed</mat-error>
+        <mat-error *ngIf="hasError('src', 'required')">Source is required</mat-error>
+        <mat-error *ngIf="hasError('src', 'maxlength')">You have more than 30 characters</mat-error>
+    
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="destination">
+        <mat-label>Destination</mat-label> 
+        <input matInput type="text"  list="destination"  id="inputDestination" placeholder="Select City" autocomplete="off"
+       name="destination" value={{selectedDestination}} formControlName="dest" [(ngModel)]=selectedDestination/>
+              <datalist id="destination">
+                <option *ngFor = "let cityCode of cityCodeList" 
+                [value]="cityCode.cityName">
+                    {{cityCode.cityName}} {{cityCode.cityCode}}
+              </option>
+              </datalist>
+    <mat-hint align="end">Not more than 30 characters long.</mat-hint>
+    <mat-error *ngIf="hasError('dest', 'pattern')">Only text allowed</mat-error>
+    <mat-error *ngIf="hasError('dest', 'required')">Destination is required</mat-error>
+    <mat-error *ngIf="hasError('dest', 'maxlength')">You have more than 30 characters</mat-error>
+
+      </mat-form-field>
+
+</div>
+<div>
+    <mat-form-field appearance="outline">
+        <mat-label>Departure Date</mat-label>
+        <input type="date" matInput placeholder="dd/MM/yyyy" name="depDate" value={{field.flightId.depDate}}
+        [(ngModel)]=field.flightId.depDate formControlName="depDate" />
+        
+    <mat-error *ngIf="hasError('depDate', 'required')">Departue Date is required</mat-error>
+    <mat-error *ngIf="hasError('depDate', 'maxlength')">Not a Valid Date</mat-error>
+
+    </mat-form-field> 
+
+    <mat-form-field appearance="outline" class="depTime">
+        <mat-label>Departure Time</mat-label>
+        <input type="text" pattern="[0-9][0-9]:[0-9][0-9]" matInput placeholder="hh:mm" name="depTime" value={{field.flightId.depTime}}
+        [(ngModel)]=field.flightId.depTime autocomplete="off" formControlName="depTime"/>
+        <mat-hint align="end">24-hour format.</mat-hint>
+
+        <mat-error *ngIf="hasError('depTime', 'pattern')">Follow the format</mat-error>
+        <mat-error *ngIf="hasError('depTime', 'required')">Departue Time is required</mat-error>
+        
+
+    </mat-form-field> 
+</div>        
+
+
+<div>
+    <mat-form-field appearance="outline">
+        <mat-label>Arrival Date</mat-label>
+        <input type="date" matInput placeholder="dd/MM/yyyy" name="arrDate" value={{field.arrDate}}
+        [(ngModel)]=field.arrDate formControlName="arrDate"/>
+        <mat-error *ngIf="hasError('arrDate', 'required')">Arrival Date is required</mat-error>
+    <mat-error *ngIf="hasError('arrDate', 'maxlength')">Not a Valid Date</mat-error>
+
+    </mat-form-field> 
+
+    <mat-form-field appearance="outline" class="arrTime">
+        <mat-label>Arrival Time</mat-label>
+        <input type="text" pattern="[0-9][0-9]:[0-9][0-9]" matInput placeholder="hh:mm" name="arrTime" value={{field.arrTime}}
+        [(ngModel)]=field.arrTime autocomplete="off" formControlName="arrTime"/>
+        <mat-hint align="end">24-hour format.</mat-hint>
+        <mat-error *ngIf="hasError('arrTime', 'pattern')">Follow the format</mat-error>
+        <mat-error *ngIf="hasError('arrTime', 'required')">Arrival Time is required</mat-error>
+    
+    </mat-form-field> 
+</div>
+
+<div>
+    <mat-form-field appearance="outline">
+        <mat-label>Total Business Seats</mat-label>
+        <input type="number" pattern="[0-9]+" matInput placeholder="" name="totalBusinessSeats" value={{field.totalBusiness}}
+        [(ngModel)]=field.totalBusiness formControlName="totalBusinessSeats" />
+        <mat-error *ngIf="hasError('totalBusinessSeats', 'required')">Only numbers allowed</mat-error>
+    
+
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="availBusiness">
+        <mat-label>Available Business Seats</mat-label>
+        <input type="number" pattern="[0-9]+" matInput placeholder="" name="availableBusinessSeats" value={{field.availableBusiness}}
+        [(ngModel)]=field.availableBusiness formControlName="availableBusinessSeats"/>
+        <mat-error *ngIf="hasError('availableBusinessSeats', 'required')">Only numbers allowed</mat-error>
+    </mat-form-field> 
+    <mat-form-field appearance="outline" class="businessFare">
+        <mat-label>Business Fare</mat-label >
+        <input type="number" pattern="[0-9]+" matInput placeholder="" name="businessFare" value={{flightFare.businessFare}}
+        [(ngModel)]=flightFare.businessFare formControlName="businessFare"/>
+        <mat-hint align="end">In Rupees</mat-hint>
+        <mat-error *ngIf="hasError('businessFare', 'required')">Only numbers allowed</mat-error>
+    </mat-form-field> 
+</div>
+
+
+<div>
+    <mat-form-field appearance="outline">
+        <mat-label>Total Economy Seats</mat-label>
+        <input type="number" pattern="[0-9]+" matInput placeholder="" name="totalEcocnomySeats" value={{field.totalEconomy}}
+        [(ngModel)]=field.totalEconomy formControlName="totalEcocnomySeats"/>
+        <mat-error *ngIf="hasError('totalEcocnomySeats', 'required')">Only numbers allowed</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="availEconomy">
+        <mat-label>Available Economy Seats</mat-label>
+        <input type="number" pattern="[0-9]+" matInput  placeholder="" name="availableEconomySeats" value={{field.availableEconomy}}
+        [(ngModel)]="field.availableEconomy" formControlName="availableEconomySeats"/>
+        <mat-error *ngIf="hasError('availableEconomySeats', 'required')">Only numbers allowed</mat-error>
+        
+    </mat-form-field> 
+    <mat-form-field appearance="outline" class="economyFare">
+        <mat-label>Economy Fare</mat-label>
+        <input type="number" pattern="[0-9]+" matInput placeholder="" name="economyFare" value={{flightFare.economyFare}}
+        [(ngModel)]=flightFare.economyFare  formControlName="economyFare"/>
+        <mat-hint align="end">In Rupees</mat-hint>
+        <mat-error *ngIf="hasError('economyFare', 'required')">Only numbers allowed</mat-error>
+    </mat-form-field> 
+</div>
+<div>Last updated on {{flightFare.date | customDate}}</div>
+</mat-card-content>
+<div align="center">
+<mat-card-actions>
+    <button mat-raised-button color="primary" [disabled]="!ownerForm.valid">Update Flight</button>
+    <div><mat-hint>*All fields are required</mat-hint></div>
+</mat-card-actions>
+</div>
+</form>
+</mat-card>

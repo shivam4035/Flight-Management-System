@@ -1,0 +1,238 @@
+<span class="title">Review your booking</span>
+<span>
+  <mat-slider class="example-margin" [(ngModel)]="sliderValue" thumbLabel="true"
+  [displayWith]="formatLabel" [disabled]="false" >
+
+  </mat-slider>
+  <div>
+    <span style="margin-left: 980px;">Flight Selelcted</span>
+    <span style="margin-left: 20px;">Flight Reviewed</span>
+    <span style="margin-left: 20px;">Added Passengers</span>
+    <span style="margin-left: 20px;">Booked</span>
+  </div>    
+</span>
+    
+
+<div class=" split flight-card">
+<mat-card>
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="flight-header-image"></div> -->
+      <mat-card-title>{{flight.flightId.vendor | titlecase}}</mat-card-title>
+      <div class="departure">
+        <span style="font-size:x-large;font-weight: 800;">{{flight.flightId.depTime}}</span><br>
+        <span style="font-size: medium; font-weight: 400;">{{flight.flightId.depDate | customDate}}</span><br>
+        <span>{{src}}, {{flight.flightId.source}}</span>
+      </div>
+      <div class="duration">
+        <span style="font-size:medium;font-weight: 300;margin-left: 30px;">{{duration}}</span><br>
+        <span style="font-size: medium; font-weight: 300;">--------------------------------</span><br>
+        
+    </div>
+    <div class="arrival">
+        <span style="font-size:x-large;font-weight: 800;">{{flight.arrTime}}</span><br>
+        <span style="font-size: medium; font-weight: 400;">{{flight.arrDate | customDate}}</span><br>
+        <span>{{dest}}, {{flight.flightId.destination}}</span>
+    </div>
+    <div class="berth">
+        <span style="font-size:x-large;font-weight: 800;">Class</span><br>
+        <span style="font-size: medium; font-weight: 400;">{{berth}}</span><br>
+        
+    </div>
+      
+      <mat-card-subtitle>Flight: {{flightId | uppercase}}</mat-card-subtitle>
+    </mat-card-header><br>
+    <mat-card-content>
+      
+        Mandatory check-list for passengers: 
+        <ul>
+        <li> Certify your health status through the Aarogya Setu app or the self-declaration form at the airport.
+        </li><li>Remember to do web check-in before arriving at the airport. Please do carry a printed or soft copy of the boarding pass.
+        </li><li> Please reach at least 2 hours prior to flight departure.
+        </li><li> No meal service will be available on-board.
+        </li><li> Face masks are compulsory. We urge you to carry your own.
+        </li></ul>
+          
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="openTravellersList()">Add Travellers Details</button>
+      <span style="margin-left: 500px; font-size: large;">{{addedTraveller}}/{{travellerNo}} Travellers</span>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class=" split flight-fare-card">
+  <mat-card >
+    <mat-card-header>
+        <mat-card-title>Fare Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div>
+            Flight Fare : <span class="fare"  *ngIf="berth=='Business'">Rs. {{flightFare.businessFare}}</span>
+                          <span class="fare"  *ngIf="berth=='Economy'">Rs. {{flightFare.economyFare}}</span><br>
+            Number of Travellers :<span class="travellerNo"> {{travellerNo}}</span><br><br>
+            Total Fare :<span class="total" *ngIf="berth=='Business'">Rs. {{travellerNo * flightFare.businessFare}}</span>
+                        <span class="total" *ngIf="berth=='Economy'">Rs. {{travellerNo * flightFare.economyFare}}</span><br>
+            <span *ngIf="berth=='Business'">({{travellerNo}} X Rs. {{flightFare.businessFare}})</span>
+            <span *ngIf="berth=='Economy'">({{travellerNo}} X Rs. {{flightFare.economyFare}})</span><br>
+        </div>
+      </mat-card-content>
+      
+  </mat-card>
+  </div>
+
+  <div class="split add-traveller" *ngIf="showList==true">
+    <mat-form-field appearance="outline" class="mobile">
+        <mat-label>Mobile</mat-label>
+        <input type="text" pattern="[0-9]+" matInput placeholder="Enter your 10-digit Mobile Number" name="Mobile"
+        [(ngModel)]=mobile autocomplete="off" minlength="10" maxlength="10" />
+        <mat-hint align="front">*Remember for checking booking history</mat-hint>
+    </mat-form-field> 
+    
+      
+    <div class="traveller" *ngFor="let item of arrayOne(travellerNo); let i=index">
+      <mat-card *ngIf="i==addedTraveller">
+        <mat-card-title>Add Passenger Details</mat-card-title>
+        <form [formGroup]="travellerForm" autocomplete="off" novalidate >
+      <mat-card-content > 
+    <span>{{i+1}}. </span>       
+    <mat-form-field appearance="outline" class="name">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput placeholder="Name" name="name"
+        [(ngModel)]=traveller.name autocomplete="off" formControlName="name" />
+        <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
+        <mat-error *ngIf="hasError('name', 'pattern')">Only text allowed</mat-error>      
+    </mat-form-field> 
+    <mat-form-field appearance="outline" class="gender">
+        <mat-label>Gender</mat-label>
+        <mat-select name="gender" [(ngModel)]=traveller.gender formControlName="gender"  >
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+          <mat-option value="Other">Other</mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('gender', 'required')">Gender is required</mat-error>
+      </mat-form-field>
+    <mat-form-field appearance="outline" class="age">
+        <mat-label>Age</mat-label>
+        <input type="int"  matInput placeholder="Age" name="age"
+        [(ngModel)]=traveller.age autocomplete="off" formControlName="age" />
+        <mat-error *ngIf="hasError('age', 'required')">Age is required</mat-error>
+        <mat-error *ngIf="hasError('age', 'pattern')">Only number allowed</mat-error> 
+    </mat-form-field>
+  </mat-card-content>
+    <mat-card-actions>
+    <span class="add-more">
+        <button mat-raised-button type="submit" [disabled]="!travellerForm.valid" (click)="saveTraveller()">Save & Add More</button>
+    </span> 
+  </mat-card-actions> 
+  </form>
+</mat-card>
+</div>
+
+  </div>
+
+  
+
+  <div class="split travellerList" *ngIf="showList==true">
+    <mat-card class="traveller-card">
+        <mat-card-header>
+          <mat-card-title>Travellers Details</mat-card-title>
+          <mat-card-subtitle>(Name, Gender, Age)</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngFor="let item of travellersList ; let j=index">
+                <div style="font-size: large;">
+                    <div>
+                      Traveller {{j+1}} : {{item.name}}, {{item.gender}}, {{item.age}}
+                      <span><button mat-button  style="margin-left: 10px;" (click)=deleteTraveller(j);><i class="fa fa-close"></i></button></span>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions class="bookButton">
+            <button  mat-raised-button *ngIf="addedTraveller==travellerNo && mobile!=''" (click)="book(); openDialog(secondDialog);">Confirm Booking</button>
+        </mat-card-actions>
+      </mat-card>
+  </div>
+
+  <div class="container" id="content" #content>
+  <ng-template #secondDialog>
+    <div class="heading">
+      <span >Flight Ticket || Booking Successful</span>
+      <span class="pnr">PNR - {{ticket.pnr | uppercase}}</span>
+    </div>
+    <br>
+  <mat-dialog-content>
+    <mat-card >
+      <mat-card-header>
+        <!-- <div mat-card-avatar class="flight-header-image"></div> -->
+        <mat-card-title>{{ticket.flightDetails.vendor | titlecase}}</mat-card-title>
+        <div class="departure-ticket" id="sample">
+          <span style="font-size:x-large;font-weight: 800;">{{ticket.flightDetails.depTime}}</span><br>
+          <span style="font-size: medium; font-weight: 400;">{{ticket.flightDetails.depDate | customDate}}</span><br>
+          <span>{{src}}, {{ticket.flightDetails.source}}</span>
+        </div>
+        <div class="duration-ticket">
+          <span style="font-size:medium;font-weight: 300;margin-left: 30px;">{{duration}}</span><br>
+          <span style="font-size: medium; font-weight: 300;">--------------------------------</span><br>
+          
+      </div>
+      <div class="arrival-ticket">
+          <span style="font-size:x-large;font-weight: 800;">{{flight.arrTime}}</span><br>
+          <span style="font-size: medium; font-weight: 400;">{{flight.arrDate | customDate}}</span><br>
+          <span>{{dest}}, {{ticket.flightDetails.destination}}</span>
+      </div>
+      <div class="berth-ticket">
+          <span style="font-size:x-large;font-weight: 800;">Class</span><br>
+          <span style="font-size: medium; font-weight: 400;">{{ticket.seatType}}</span><br>    
+      </div>
+      <mat-card-subtitle>Flight: {{flightId | uppercase}}</mat-card-subtitle>  
+      </mat-card-header><br>
+      <mat-card-content>
+        <h3>Passenger details</h3>
+        
+          <div class="table-responsive-sm">          
+            <table class="table table-bordered" >
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>Age</th>
+                  <th>Seat Number</th>
+                  
+                </tr>
+              </thead>
+              
+              <tbody>
+                <tr *ngFor="let item of ticket.listOfTravellers ; let j=index">
+                  <td>{{j+1}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.gender}}</td>
+                  <td>{{item.age}}</td>
+                  <td>{{item.seatNo}}</td>
+                </tr>
+              </tbody>
+             
+            </table>
+            
+          
+        </div>
+
+        <div class="fareDeatils">
+          Total Fare :<span class="totalTicket" *ngIf="berth=='Business'">Rs. {{travellerNo * flightFare.businessFare}}</span>
+          <span class="totalTicket" *ngIf="berth=='Economy'">Rs. {{travellerNo * flightFare.economyFare}}</span>
+
+          <span class="bookedDate">Booked Date: {{ticket.bookedDate}}</span>
+        </div><br><br>
+        <div>
+          Booking confirmation sent to Mobile number - {{mobile}}
+        </div>    
+      </mat-card-content>
+      <mat-dialog-actions align="end">
+        <button mat-button matDialogClose color="primary" (click)="home()">Done</button>
+      </mat-dialog-actions>
+    </mat-card>
+  </mat-dialog-content>
+  
+   </ng-template>
+   </div>

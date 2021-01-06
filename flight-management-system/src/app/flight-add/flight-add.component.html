@@ -1,0 +1,111 @@
+<app-admin></app-admin>
+
+
+  <form #flightAddForm="ngForm" (ngSubmit)="addFlight()" >
+
+    <div ngModelGroup="flightId">
+      <div class="form-row">
+        <div class="form-group col-md-4" [class.has-error]="vendorControl.invalid && vendorControl.touched" >
+          <label for="vendor">Vendor*</label>
+          <input pattern="[ a-z A-Z ]*" required type="text" class="form-control" id="inputVendor" placeholder="Vendor" name="vendor"
+          [(ngModel)]="flight.flightId.vendor" #vendorControl="ngModel" autocomplete="off"/>
+          <span class="help-block" *ngIf="vendorControl.invalid && vendorControl.touched"> 
+              *[a-z], [A-Z] allowed
+          </span>
+        </div>
+      
+        <div class="form-group col-md-4" [class.has-error]="sourceControl.invalid && sourceControl.touched">
+          <label for="source">Source*</label>
+            <input required type="text" pattern="[A-Z a-z]*"  class="form-control" list="source"  id="inputSource" placeholder="Select City from list" autocomplete="off"
+            [(ngModel)]="flight.flightId.source" name="source" #sourceControl="ngModel" />
+            <datalist id="source">
+              <option *ngFor = "let cityCode of cityCodeList" 
+              [value]="cityCode.cityName">
+                  {{cityCode.cityName}} {{cityCode.cityCode}}
+            </option>
+            </datalist>
+            <span class="help-block" *ngIf="sourceControl.invalid && sourceControl.touched"> 
+              not a valid City
+          </span>
+        </div>
+
+        <div class="form-group col-md-4" [class.has-error]="destControl.invalid && destControl.touched">
+          <label for="destination">Destination*</label>
+            <input required type="text" pattern="[A-Z a-z]*" class="form-control" list="destination"  id="inputDestination" placeholder="Select City from List" autocomplete="off"
+            [(ngModel)]="flight.flightId.destination" name="destination" #destControl="ngModel" />
+            <datalist id="destination">
+              <option *ngFor = "let cityCode of cityCodeList" 
+              [value]="cityCode.cityName">
+                  {{cityCode.cityName}} {{cityCode.cityCode}}
+            </option>
+            </datalist>
+            <span class="help-block" *ngIf="destControl.invalid && destControl.touched"> 
+              not a valid City
+          </span>
+        </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="depDate">Departure Date*</label>
+              
+              <input required type="date" class="form-control" id="inputDepDate" placeholder="dd-mm-yyyy" name="depDate" 
+              [(ngModel)]="flight.flightId.depDate" autocomplete="off"/>
+          </div>
+          <div class="form-group col-md-6 " [class.has-error]="depTimeControl.invalid && depTimeControl.touched" >
+              <label for="depTime">Departure Time*</label>
+              <input required type="text" pattern="[0-9][0-9]:[0-9][0-9]" class="form-control" id="inputDepTime" placeholder="hh:mm" name="depTime" 
+              [(ngModel)]="flight.flightId.depTime" autocomplete="off" #depTimeControl="ngModel" />
+              <span class="help-block" *ngIf="depTimeControl.invalid && depTimeControl.touched"> 
+                *not a valid time
+            </span>
+          </div>
+      </div>
+    </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="arrDate">Arrival Date*</label>
+          <input required type="date" class="form-control" id="inputArrDate" placeholder="dd-mm-yyyy" name="arrDate"
+           [(ngModel)]="flight.arrDate" autocomplete="off">
+        </div>
+        <div class="form-group col-md-6" [class.has-error]="arrTimeControl.invalid && arrTimeControl.touched">
+          <label for="arrTime">Arrival Time*</label>
+          <input required type="text" pattern="[0-9][0-9]:[0-9][0-9]"  class="form-control" id="inputArrTime" placeholder="hh:mm" name="arrTime"
+           [(ngModel)]="flight.arrTime" autocomplete="off" #arrTimeControl="ngModel">
+           <span class="help-block" *ngIf="arrTimeControl.invalid && arrTimeControl.touched">*not a valid time</span>
+        </div>
+      </div>
+      <label for="business">Business Seats</label>
+      <div class="form-row">
+          
+          <div class="form-group col-md-2">
+              <label for="totalBusiness">Total*</label> 
+              <input required type="number" pattern="[0-9]+" class="form-control" id="totalBusiness" name="totalBusiness" [(ngModel)]="flight.totalBusiness" value="">
+          </div>
+          <div class="form-group col-md-2">
+              <label for="availableBusiness">Available*</label> 
+              <input required type="number" pattern="[0-9]+" class="form-control" id="availableBusiness" name="availableBusiness" [(ngModel)]="flight.availableBusiness">
+          </div>
+      </div>
+  
+      <label for="economy">Economy Seats</label>
+      <div class="form-row">
+          
+          <div class="form-group col-md-2">
+              <label for="totalEconomy">Total*</label> 
+              <input required type="number" pattern="[0-9]+" class="form-control" id="totalEconomy" name="totalEconomy" [(ngModel)]="flight.totalEconomy">
+          </div>
+          <div class="form-group col-md-2" [class.has-error]="economyAvaialble.invalid && economyAvaialble.touched" >
+              <label for="availableEconomy">Available*</label> 
+              <input required type="number" pattern="[0-9]+" #economyAvaialble=ngModel class="form-control" id="availableEconomy" name="availableEconomy" [(ngModel)]="flight.availableEconomy">
+              <span class="help-block" *ngIf="economyAvaialble.invalid && economyAvaialble.touched">
+                Enter a Valid Number
+              </span>
+          </div>
+          
+      </div>
+      
+    <button mat-stroked-button color="primary" type="submit" [disabled]="flightAddForm.invalid" >Add Flight</button>
+    <div>Enter all * fields to enable button click</div>
+  </form>
+
+  

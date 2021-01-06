@@ -1,0 +1,289 @@
+
+
+.source{
+    margin-top: 1%;
+    margin-left: 5%;
+}
+
+.destination{
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+.date{
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+.berth{
+  margin-top: 1%;
+  margin-left: 2%;
+}
+
+.travellers{
+  margin-top: 1%;
+  margin-left: 2%;
+}
+
+
+.nav{
+    height: 5rem;
+    background-color: aliceblue;
+}
+
+button{
+    margin-left: 2%;
+    margin-top: 1.5%;
+    height: 2.5rem;
+    size: 2rem;
+}
+
+a{
+    margin-left: 2%;
+    margin-top: 2.3%;
+    
+    text-align: center;
+}
+
+.font22{
+  font-size: 22px;
+  line-height: 22px;
+}
+
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  /* Control the left side */
+  .left {
+    left: 0;
+    margin-top: 5rem;
+    background-color:#e6e6e6;
+  }
+  
+  /* Control the right side */
+  .right {
+    right: 0;
+    margin-top: 5rem;
+    background-color: whitesmoke;
+    
+  }
+
+  .centered{
+    text-align: center;
+    
+  }
+
+  a{
+    font-size:14px;
+  }
+  
+  .selected {
+    background-color: rosybrown;
+  }
+
+  h4{
+    padding-top: 25px;
+  }
+  
+  .buttonMoreInfo{
+      
+      margin-left: 31rem;
+  }
+
+  .heading{
+    border: 2px solid lightcoral;
+    height: 40px;
+  }
+
+  
+
+  .depTime{
+    display:block;
+    border: 2px solid darkblue;
+    width: 150px;
+    margin-left: 140px;
+    text-align: center;
+    height: 30px;
+  }
+
+  .arrTime{
+    display:block;
+    border: 2px solid darkblue;
+    width: 150px;
+    margin-left: 200px;
+    text-align: center;
+    height: 30px;
+  }
+  
+  .sortby-dom {
+    background-color: cornsilk;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 2px;
+    width: 100%;
+    display: flex;
+    border: 2px solid darkblue;
+    text-align: center;
+    
+}
+
+.booking-list {
+  color: #4e4e4e;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 2px;
+  width: 100%;
+  display: flex;
+  border: 2px solid black;
+  height: 80px;
+  text-align: center;
+  margin-top: 15px;
+  border-radius: 10px;
+  
+  
+}
+.booking-list:hover {
+  background-color:grey
+}
+
+.vendor-heading{
+  opacity: 1; visibility: visible; margin-left: 8px; width: 103px; text-align: center;
+
+}
+
+.empty-heading{
+  opacity: 0; visibility: hidden; margin-left: -25px; width: 135px; text-align: center;
+}
+
+.departure-heading{
+  opacity: 1; visibility: visible; margin-left: -4%; width: 80px;text-align: center;
+}
+
+.duration-heading{
+  opacity: 1; visibility: visible; margin-left: 60px; width: 90px;text-align: center;
+}
+
+.arrival-heading{
+  opacity: 1; visibility: visible; margin-left: 50px; width: 75px;text-align: center;
+}
+
+.vendor{
+  opacity: 1; visibility: visible; margin-left: 19px; width: 135px;  text-align: center;
+}
+
+.empty{
+  opacity: 0; visibility: hidden; margin-left: 28px; width: 135px;  text-align: center;
+}
+
+.departure{
+  opacity: 1; visibility: visible; margin-left: 10px; width: 100px; text-align: center;
+}
+
+.duration{
+  opacity: 1; visibility: visible; margin-left: 80px; width: 170px; text-align: center;
+}
+
+.arrival{
+  opacity: 1; visibility: visible; margin-left: 60px; width: 100px; text-align: center;
+}
+
+.buttonMoreInfo{
+  opacity: 1; visibility: visible; margin-left: 80px; width: 100px;margin-top: 12px; margin-right: 6px;
+  
+}
+
+
+
+.vendor-name{
+  position: absolute;
+  top:20%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+}
+
+.departure-detail{
+  position: absolute;
+  top:20%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+
+.arrival-detail{
+  position: absolute;
+  top:20%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+}
+
+.required-seats{
+  
+  position: absolute;
+  top:40%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  
+
+}
+
+.current-fare{
+
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+
+}
+
+.counterBerth{
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.additional-seats{
+  
+  position: absolute;
+  top:57%;
+  left: 15%;
+  transform: translate(-50%, -50%);
+  
+
+}
+
+.additional-fare{
+
+  position: absolute;
+  top: 57%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+
+}
+.example-section{
+  position: absolute;
+  top: 65%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+}
+
+.book-button{
+  position: absolute;
+  top: 70%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+}
+
+.centered{
+  text-align: center;
+}
+
+  
+  

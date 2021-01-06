@@ -1,0 +1,41 @@
+
+<h1>Booking History for {{userId}}</h1>
+
+<div class="table-responsive-sm" style="text-align: center;">          
+    <table class="table table-bordered table-striped table-hover" >
+      
+    <thead>
+      <tr>
+        
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let el of elements;">
+        <td>{{el.pnr | uppercase}}</td>
+        <td>{{el.seatType}}</td>
+        <td>
+            <table class="table table-border">
+               
+                <tr *ngFor="let traveller of el.listOfTravellers" >
+                  <td>{{traveller.name}}</td>
+                  <td>{{traveller.gender}}</td>
+                  <td>{{traveller.age}}</td>
+                  <td>{{traveller.seatNo}}</td>
+                </tr>
+              </table></td>
+        <td>
+
+                Vendor: {{el.flightDetails.vendor}}<br>
+                Source: {{el.flightDetails.source}}<br>
+                Destination: {{el.flightDetails.destination}}<br>
+                Departure Date: {{el.flightDetails.depDate}}<br>
+                Departure Time: {{el.flightDetails.depTime}}
+
+        </td>
+        <td>
+           {{el.bookedDate}}
+        </td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,46 @@
+mat-form-field{
+    width: 400px;   
+}
+mat-card-title{
+    text-align: center;
+}
+
+.source{
+    margin-left: 10px;
+}
+
+.destination{
+    margin-left: 10px;
+}
+
+.form{
+    margin-left: 10px;
+}
+
+.depTime{
+    margin-left: 10px;
+}
+
+.arrTime{
+    margin-left: 10px;
+}
+
+.availBusiness{
+    margin-left: 10px;
+}
+
+.businessFare{
+    margin-left: 10px;
+}
+
+.availEconomy{
+    margin-left: 10px;
+}
+
+.economyFare{
+    margin-left: 10px;
+}
+
+input::-webkit-calendar-picker-indicator {
+    opacity: 100;
+ }

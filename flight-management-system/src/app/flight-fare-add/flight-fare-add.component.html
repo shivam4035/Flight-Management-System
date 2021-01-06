@@ -1,0 +1,30 @@
+
+<app-admin></app-admin>
+<div class="mat-headline">
+   New Flight added with id -  {{id}}
+</div>
+<div style="border: 1px solid black;width: 1000px; margin-left: 200px;">
+<div style="text-align: center;" class="mat-title"> Add Fare </div>
+    
+<div>  
+<form #addFareForm="ngForm">
+    <div class="form-row">
+        <div class="form-group col-md-4">
+        <label for="businessFare">Business Seats Fare*</label>
+        <input required type="number" pattern="[0-9]+" class="form-control" id="inputBusinessFare" placeholder="Business Fare" name="BusinessFare" 
+        [(ngModel)]="flightFare.businessFare" placeholder="Enter Business Fare"/>
+        </div>
+        <div class="form-group col-md-4">
+        <label for="economyFare">Economy Seats Fare*</label>
+        <input required type="number" pattern="[0-9]*"  class="form-control" id="inputEcononmyFare" placeholder="Economy Fare" name="EconomyFare" 
+        [(ngModel)]="flightFare.economyFare" placeholder="Enter Economy Fare"/>
+        </div>
+    </div>
+    
+        <button type="submit" class="btn btn-primary" [disabled]="addFareForm.invalid" (click)="addFlightFare()" >Add Fare</button>
+        <div>Enter all * fields to enable button click</div>
+</form>
+
+</div>
+
+</div>

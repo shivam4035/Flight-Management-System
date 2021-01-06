@@ -1,0 +1,165 @@
+.split{
+    position: absolute;
+    height: 300px;
+    
+}
+.flight-fare-card{
+    width: 350px;
+    margin-top: 10px;
+    margin-left: 1000px;
+  }
+
+.flight-card {
+    
+    max-width: 900px;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+  
+  .flight-header-image {
+    background-image: url('https://i.pinimg.com/originals/5f/9b/e5/5f9be5876eda5d373d7f91a8faf5e659.jpg');
+    background-size: cover;
+  }
+
+  .title{
+      margin-top: 10px;
+      margin-left: 20px;
+  }
+
+  .departure{
+    width: 250px;
+    margin-left: 60px;
+  }
+
+  .arrival{
+    width: 250px;
+    
+    margin-left: 80px;
+  }
+
+  .berth{
+    margin-left: 90px;
+  }
+
+  
+  .duration{
+    margin-left: 60px;
+  }
+
+  .fare{
+      margin-left: 120px;
+      font-size: 15px;
+      font-weight: 800;
+  }
+
+  .travellerNo{
+      margin-left: 100px;
+      font-size: 15px;
+      font-weight: 800;
+  }
+
+  .total{
+      margin-left: 128px ;
+      font-size: 15px;
+      font-weight: 800;
+  }
+
+  .totalTicket{
+    margin-left: 80px ;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+  .add-traveller{
+      margin-left: 20px;
+      margin-top: 350px;
+  }
+
+  .traveller{
+      margin-top: 5px;
+  }
+
+  .mobile{
+    margin-left: 20px;
+    width:250px
+  }
+
+  .name{
+    margin-left: 20px;
+  }
+
+  .gender{
+    margin-left: 30px;
+  }
+
+  .age{
+    margin-left: 40px;
+  }
+
+  .add-more{
+    margin-left: 45px;
+  }
+
+  .travellerList{
+     
+    width: 350px;
+    height: 350px;
+    margin-top: 250px;
+    margin-left: 1000px;
+  }
+
+  .traveller-card{
+    
+    height: 500px;
+  }
+
+  .bookButton{
+    
+    margin-top: 180px;
+    margin-left: 100px;
+  }
+
+  .heading{
+    font-size: large;
+    font-weight: 500;
+  }
+
+  .pnr{
+    margin-left: 500px;
+  }
+
+  .bookedDate{
+    margin-left: 400px;
+  }
+
+  .example-margin{
+    
+    pointer-events: none;
+    width: 400px;
+    height: 50px;
+    margin-left: 800px;
+  }
+
+  .title{
+    font-size: large;
+    font-weight: 500;
+  }
+  
+
+  .departure-ticket{
+    
+    margin-left: 60px;
+  }
+
+  .arrival-ticket{
+    
+    margin-left: 80px;
+  }
+
+  .berth-ticket{
+    margin-left: 90px;
+  }
+
+  .duration-ticket{
+    margin-left: 60px;
+  }

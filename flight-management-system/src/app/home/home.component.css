@@ -1,0 +1,164 @@
+.home-header-image {
+  background-image: url('https://pbs.twimg.com/profile_images/690560402133012480/HFBHc3uH.png');
+  background-size: cover;
+}
+ 
+ .searchButton{
+   margin-top: -10px;
+   margin-left: 200px;
+ }
+ 
+ /* Split the screen in half */
+ .split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  /* Control the left side */
+  .left {
+    left: 0;
+    margin-top: 3.5%;
+    
+  }
+  
+  /* Control the right side */
+  .right {
+    right: 0;
+    margin-top: 3.5%;
+  }
+  
+  
+
+  /* If you want the content centered horizontally and vertically */
+  .source {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    
+  }
+
+  .destination {
+    position: absolute;
+    top: 30%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    
+  }
+
+  .date{
+    position: absolute;
+    top: 60%;
+    left: 23%;
+    transform: translate(-50%, -50%);
+    
+  }
+
+  .berth{
+    position: absolute;
+    top: 60%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+
+  }
+
+  button{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+  }
+  
+  .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+
+  .travellers{
+    position: absolute;
+    top: 60%;
+    left:82%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+
+  .searchCard{
+    margin-top: 80px;
+    height: 500px;
+    width: 650px;
+    margin-left: 20px;
+    border: 2px solid black;
+  }
+
+  .searchButton{
+    margin-top: -15px;
+    margin-left: 100px;
+  }
+
+  .navbar-brand{
+    height: 10px;
+  }
+
+  img{
+    height: 30px;
+    width: 40px;
+  }
+
+  .air-india{
+    margin-left: 50px;
+    margin-top: 40px;
+    width: 80px;
+    height: 100px;
+  }
+
+  .indigo{  
+    margin-left: 70px;
+    margin-top: 40px;
+    width: 80px;
+    height: 90px;
+  }
+
+  .jet{
+    margin-left: 80px;
+    margin-top: 40px;
+    width: 100px;
+    height: 120px;
+  }
+
+  .spice-jet{
+    margin-left: 80px;
+    margin-top: 40px;
+    width: 100px;
+    height: 120px;
+  }
+
+  .vistara{
+    margin-left: 160px;
+    margin-top: 30px;
+    width: 100px;
+    height: 120px;
+  }
+
+  .air-asia{
+    margin-left: 50px;
+    margin-top: 30px;
+    width: 100px;
+    height: 120px;
+  }
+
+  .goair{
+    margin-left: 50px;
+    margin-top: 30px;
+    width: 140px;
+    height: 120px;
+  }

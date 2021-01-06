@@ -1,0 +1,153 @@
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head> 
+
+<div>  
+<nav class="navbar navbar-expand-sm bg-secondary navbar-dark"> 
+  <div class="container-fluid" > 
+    <div class="navbar-header">
+      
+      <a class="navbar-brand" href="home">
+        <img src="https://pbs.twimg.com/profile_images/690560402133012480/HFBHc3uH.png" alt="">
+        <span style="margin-left: 20px;">T-Airlines</span></a> 
+    </div> 
+    <ul class="nav navbar-nav mx-auto "> 
+      <li class="nav-item">
+        <form class="form-inline mr-auto">
+            <input style="width: 270px;" class="form-control" type="text" placeholder="Booking history by Mobile Number" aria-label="Search" name="bookings" [(ngModel)]="userId" autocomplete="off">
+            <span><button class="searchButton" type="submit" mat-raised-button (click)=goToBookingHistory();>
+              Search
+          </button></span>
+          </form>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav ml-auto">
+      <li hidden class="nav-item">
+          <a class="nav-link" href="admin/flight">Admin Login</a>
+      </li> 
+    </ul> 
+
+  </div> 
+</nav> 
+</div>
+
+<div class="split left" *ngIf="last=='home'">
+  <mat-card fxFlex="500px" fxFlex.xs="100%" class="searchCard">
+    <mat-card-header>
+    <mat-card-title>Flight Search</mat-card-title>
+  </mat-card-header>
+    <form [formGroup]="searchForm" autocomplete="off" novalidate>
+      <mat-card-content>
+    <mat-form-field appearance="fill" class="source">
+      <mat-label>Source</mat-label> <span class="myarrow">
+      <input matInput type="text"  list="source"  id="inputSource" placeholder="Select City" name="source" autocomplete="off"
+    [(ngModel)]="src" formControlName="source" /></span>
+            <datalist id="source">
+              <option *ngFor = "let cityCode of cityCodeList" 
+              [value]="cityCode.cityName">
+                  {{cityCode.cityName}} {{cityCode.cityCode}}
+            </option>
+            </datalist>
+        <mat-error *ngIf="hasError('source', 'required')">Source is required</mat-error>    
+      </mat-form-field>
+    <mat-form-field appearance="fill" class="destination">
+      <mat-label>Destination</mat-label> 
+      <input matInput type="text"  list="destination"  id="inputDestination" placeholder="Select City"  name="destination" autocomplete="off"
+    [(ngModel)]="dest" formControlName="destination" />
+            <datalist id="destination">
+              <option *ngFor = "let cityCode of cityCodeList" 
+              [value]="cityCode.cityName">
+                  {{cityCode.cityName}} {{cityCode.cityCode}}
+            </option>
+            </datalist>
+      <mat-error *ngIf="hasError('destination', 'required')">Destination is required</mat-error>  
+    </mat-form-field>
+
+    <mat-form-field color="accent" appearance="fill" class="date">
+      <mat-label>Choose Date</mat-label>
+      <input matInput [matDatepicker]="basicDatepicker" [(ngModel)]="date" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="basicDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker  #basicDatepicker ></mat-datepicker>
+      <mat-error *ngIf="hasError('date', 'required')">Date is required</mat-error>  
+    </mat-form-field>
+
+    <div class="berth">
+    <mat-label id="example-radio-group-label">Choose Class: </mat-label>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        [(ngModel)]="berth" formControlName="berth" >
+        <mat-radio-button class="example-radio-button"  
+        *ngFor="let SelectBerth of berthsName" [value]="SelectBerth" >
+            {{SelectBerth}}
+        </mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="hasError('berth', 'required')">Class is required</mat-error>  
+
+    </div>
+
+    <mat-form-field appearance="fill" class="travellers">
+      <mat-label>Number of Travellers</mat-label> 
+      <input matInput type="number"  placeholder="Number of Trvaellers" name="travellerNo" autocomplete="off"
+    [(ngModel)]="noOfTraveller" formControlName="travellerNo" />
+    <mat-error *ngIf="hasError('travellerNo', 'required')">No of traveller should be number</mat-error> 
+    
+ 
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-actions>
+  <button mat-raised-button color="primary" (click)="searchFlight()" [disabled]="!searchForm.valid">Search Flights</button>
+  </mat-card-actions>
+  </form>
+</mat-card>
+</div>
+
+<div class="split right" *ngIf="last=='home'">
+  <div class="centered">
+    
+    <h1>Flight Reservation System</h1>
+    <h2>Some Mandatory Guidelines</h2>
+    <ul>
+      <li>Till the time the COVID-19 pandemic lasts, the airlines will have to adhere to the floor and ceiling limits issued by the ministry.</li>
+      <li>The passengers will also be required to give a self declaration or their Aarogya Setu status for compatible devices, stating that they are free of COVID-19. Those who have been classified as ‘red’ in the Aarogya Setu app will not be allowed to travel.</li>
+      <li>Wearing of protective gear, i.e., face masks will be mandatory for passengers.</li>
+      <li>No meals shall be provided by the airlines on board.</li>
+    </ul>
+   
+    <img class="air-india" src="https://i.pinimg.com/originals/5f/9b/e5/5f9be5876eda5d373d7f91a8faf5e659.jpg" alt="">
+  
+    <img class="indigo" src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/IndiGo_logo.svg/250px-IndiGo_logo.svg.png" alt="">
+    
+    <img class="jet" src="data:image/jpeg;base64,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" alt="">
+  
+
+    <img class="spice-jet" src="https://i.pinimg.com/originals/56/6c/f1/566cf1982ef771133ac55930e2cda0ba.jpg" alt=""><br><br>
+    
+    <img class="vistara" src="https://www.underconsideration.com/brandnew/archives/vistara_logo_detail.png" alt="">
+    
+    <img class="air-asia" src="data:image/png;base64,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" alt="">
+    
+    <img class="goair" src="https://i0.wp.com/travelobiz.com/wp-content/uploads/2020/03/GoAir-Waiver-Cancellation-Rescheduling.jpg?fit=686%2C448&ssl=1&resize=1280%2C720" alt="">
+  
+  </div>
+</div>   
+

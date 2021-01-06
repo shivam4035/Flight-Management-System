@@ -1,0 +1,164 @@
+
+
+<div class="nav">
+
+<a href="/home">Home</a>    
+
+
+<mat-form-field appearance="outline" class="source">
+    <mat-label>Source</mat-label> 
+    <input matInput type="text"  list="source"  id="inputSource" placeholder="Select City" autocomplete="off"
+  [ngModelOptions]="{standalone: true}" value={{src}} [(ngModel)]=src />
+          <datalist id="source">
+            <option *ngFor = "let cityCode of cityCodeList" 
+            [value]="cityCode.cityName">
+                {{cityCode.cityName}} {{cityCode.cityCode}}
+          </option>
+          </datalist>
+  </mat-form-field>
+
+
+<mat-form-field appearance="outline" class="destination">
+    <mat-label>Destination</mat-label> 
+    <input matInput type="text"  list="destination"  id="inputDestination" placeholder="Select City" autocomplete="off"
+            [ngModelOptions]="{standalone: true}" value={{dest}} [(ngModel)]=dest/>
+          <datalist id="destination">
+            <option *ngFor = "let cityCode of cityCodeList" 
+                    [value]="cityCode.cityName">
+                    {{cityCode.cityName}} {{cityCode.cityCode}}
+            </option>
+          </datalist>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="date">
+    <mat-label>Departure Date</mat-label>
+    <input type="date" matInput placeholder="dd/MM/yyyy" name="depDate" value={{shortDate}}
+    [(ngModel)]=shortDate/>
+</mat-form-field> 
+
+<mat-form-field appearance="fill" class="berth">
+  <mat-label>Choose Class</mat-label>
+  <mat-select name="seatType" [(ngModel)]=berthNew >
+    <mat-option value="Business">Business</mat-option>
+    <mat-option value="Economy">Economy</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="outline" class="travellers">
+  <mat-label>Number Of Travellers</mat-label> 
+  <input matInput type="number"  id="inputTraveller" placeholder="No. of Traveller" autocomplete="off"
+          name="numberOfTraveller" value={{noOfTraveller}} [(ngModel)]=noOfTraveller/>
+        
+</mat-form-field>
+
+<button  mat-raised-button color="primary" (click)="searchFlight()">Search </button>
+</div>
+
+<div class="split left">
+  <p class="cards-heading font22">Flights from 
+    <b>{{static_src}}</b>
+    to
+    <b>{{static_dest}}</b>
+  </p>
+  
+  <div class="sortby-dom">
+    <div class="vendor-heading">
+        <span>Vendor</span></div>
+        <div class="empty-heading">
+          <span></span>
+        </div>
+        <div class="departure-heading">
+          <span>Departure</span>
+        </div>
+        <div class="duration-heading">
+          <span>Duration</span>
+        </div>
+        <div class="arrival-heading">
+          <span>Arrival</span>
+        </div>
+  </div>
+
+  <div class="booking-list" *ngFor="let flightDTO of flightDTOList; let i = index"  (click)="onClick(flightDTO)" 
+  [ngClass]="{ 'selected': flightDTO == selectedItem }">
+  <div class="vendor">
+
+  <span style="display: block;margin-top: 15px;">{{flightDTO.flightId.vendor | titlecase}}</span>
+    </div>
+        <div class="empty">
+          <span style="display: block;"></span>
+        </div>
+        <div class="departure">
+          <span >{{flightDTO.flightId.depTime}}</span><br>
+          <span>{{flightDTO.flightId.source}}</span>
+        </div>
+        <div class="duration">
+          <span>{{duration[i]}}</span><br>
+          <span>------------------></span>
+        </div>
+        <div class="arrival">
+          <span>{{flightDTO.arrTime}}</span><br>
+          <span>{{flightDTO.flightId.destination}}</span>
+        </div>
+        <div class="buttonMoreInfo">
+            <button mat-raised-button (click)="flightInfo(flightDTO.id)">More Info</button>
+        </div>
+
+      
+  </div>   
+   
+</div>
+
+<div class="split right">
+    <div class="centered" *ngIf="isShow">
+      <h1 style="text-align: center;">Flight Information</h1>
+      <div class="vendor-name">
+        <label>Vendor</label>
+        <h1 >{{flight.flightId.vendor | titlecase}}</h1></div>
+        <div class="departure-detail">
+          <label>Departure</label>
+          <div>{{flight.flightId.depTime}}</div>
+          <div>{{departureDate |  customDate}}</div>
+          <div>{{source}}</div></div>
+          <div class="arrival-detail">
+            <label>Arrival</label>
+            <div>{{flight.arrTime}}</div>
+            <div>{{arrivalDate |  customDate}}</div>
+            <div>{{destination}}</div></div>
+        
+         <div class="required-seats">
+          <label>Available {{berth}} Seats</label>
+          <h1 *ngIf="berth=='Business'">{{flight.availableBusiness}}</h1>
+          <h1 *ngIf="berth=='Economy'">{{flight.availableEconomy}}</h1></div>
+          <div class="current-fare">
+          <label>{{berth}} Fare</label>
+          <h1 *ngIf="berth=='Business'">Rs. {{flightFare.businessFare}}</h1>
+          <h1 *ngIf="berth=='Economy'">Rs. {{flightFare.economyFare}}</h1></div>
+          <div class="counterBerth">
+            <a [routerLink]="" (click)="toggle()">See {{counterBerth}} class details</a>
+            </div>
+          <div *ngIf="additionalSeats">
+          <div class="additional-seats">
+            <label>Available {{counterBerth}} Seats</label><div>
+            <span *ngIf="counterBerth=='Business'">{{flight.availableBusiness}}</span></div><div>
+            <span *ngIf="counterBerth=='Economy'">{{flight.availableEconomy}}</span></div></div>
+            <div class="additional-fare">
+            <label>{{counterBerth}} Fare</label><div>
+            <span *ngIf="counterBerth=='Business'">Rs. {{flightFare.businessFare}}</span></div><div>
+            <span *ngIf="counterBerth=='Economy'">Rs. {{flightFare.economyFare}}</span></div>
+          </div>
+          <section class="example-section" *ngIf="checkAvailableSeats(counterBerth)">
+            <span class="example-list-section">
+              <mat-checkbox class="example-margin"
+                            (change)="changeBerth()">
+                Switch preference to <span style="font-weight: 100;">{{counterBerth}}</span>
+              </mat-checkbox>
+            </span>
+            </section>
+          </div>
+          <div class="book-button" *ngIf="fare_add==true">
+          <button mat-raised-button (click)="book(flight.id)">Proceed Booking</button>
+        </div>
+      </div>
+</div>
+
+
